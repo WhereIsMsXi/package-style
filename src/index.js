@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs').promises;
 const CleanCSS = require('clean-css');
+const { concatScss } = require('./utils')
 
 async function resetOutupFolder() {
   const distPath = path.join(__dirname, distDir);
@@ -16,34 +17,35 @@ async function resetOutupFolder() {
 
   await fs.mkdir(distPath, { recursive: true });
 }
-async function concatSass(inputDir) {
-  let result = '';
-
-  const scssFiles = await fs.readdir(inputDir);
-  for( const file of scssFiles ) {
-    if(path.extname(file) === '.scss') {
-      const filePath = path.join(inputDir, file);
-      const content = await fs.readFile(filePath, 'utf8');
-      result += content + '\n';
-    }
-  }
-
-  return result;
+async function dealScss() {
+  const inputDir = './src/styles';
+  const outuptFile = '../dist/index.scss';
+  
+  let content = '';
+  content = await concatScss(inputDir);
+  content = new CleanCSS().minify(content);
+  
+  await fs.writeFile(path.join(__dirname, outuptFile), content.styles, 'utf8');
+}
+async function dealMixin() {
+  const inputDir = './src/mixin';
+  const outuptFile = '../dist/mixin.scss';
+  
+  let content = '';
+  content = await concatScss(inputDir);
+  content = new CleanCSS().minify(content);
+  
+  await fs.writeFile(path.join(__dirname, outuptFile), content.styles, 'utf8');
 }
 
-const inputDir = './src/styles';
-const outuptDir = '../dist/index.scss';
+
 const distDir = '../dist'; 
 async function boot() {
-  let content = '';
 
   await resetOutupFolder();
 
-  content = await concatSass(inputDir);
-
-  content = new CleanCSS().minify(content);
-
-  await fs.writeFile(path.join(__dirname, outuptDir), content.styles, 'utf8');
+  await dealMixin();
+  await dealScss();
 }
 
 boot();
