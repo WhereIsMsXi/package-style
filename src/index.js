@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs').promises;
-
+const CleanCSS = require('clean-css');
 
 async function resetOutupFolder() {
   const distPath = path.join(__dirname, distDir);
@@ -41,7 +41,9 @@ async function boot() {
 
   content = await concatSass(inputDir);
 
-  await fs.writeFile(path.join(__dirname, outuptDir), content, 'utf8');
+  content = new CleanCSS().minify(content);
+
+  await fs.writeFile(path.join(__dirname, outuptDir), content.styles, 'utf8');
 }
 
 boot();
