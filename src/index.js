@@ -1,10 +1,9 @@
 const path = require('path');
 const fs = require('fs').promises;
 
-const inputDir = './src/styles';
 
 async function concatSass(inputDir) {
-  let result = ''
+  let result = '';
 
   const scssFiles = await fs.readdir(inputDir);
   for( const file of scssFiles ) {
@@ -18,10 +17,14 @@ async function concatSass(inputDir) {
   return result;
 }
 
+const inputDir = './src/styles';
+const outuptDir = '../dist/index.scss';
 async function boot() {
   let content = '';
 
   content = await concatSass(inputDir);
+
+  await fs.writeFile(path.join(__dirname, outuptDir), content, 'utf8');
 }
 
 boot();
