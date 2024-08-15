@@ -2,6 +2,20 @@ const path = require('path');
 const fs = require('fs').promises;
 
 
+async function resetOutupFolder() {
+  const distPath = path.join(__dirname, distDir);
+  try {
+    await fs.stat(distPath);
+
+    if (stats.isDirectory()) {
+      await fs.rm(distPath, { recursive: true });
+    }
+  } catch (error) {
+    console.log('not have dist folder');
+  }
+
+  await fs.mkdir(distPath, { recursive: true });
+}
 async function concatSass(inputDir) {
   let result = '';
 
@@ -19,8 +33,11 @@ async function concatSass(inputDir) {
 
 const inputDir = './src/styles';
 const outuptDir = '../dist/index.scss';
+const distDir = '../dist'; 
 async function boot() {
   let content = '';
+
+  await resetOutupFolder();
 
   content = await concatSass(inputDir);
 
