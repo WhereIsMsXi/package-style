@@ -1,12 +1,23 @@
 {
   "name": "@where_is_mr_li/style",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "common styles",
   "main": "index.js",
   "scripts": {
     "build": "node ./src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "sass",
+    "minify"
+  ],
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "publishConfig": {
+		"access": "public"
+	},
+
   "author": "sxt",
   "license": "ISC",
   "engines": {
