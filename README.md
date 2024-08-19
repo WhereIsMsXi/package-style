@@ -1,11 +1,21 @@
-# style
+# @where_is_mr_li/style
 
-> General Style
+> Extract style content into a npm
 
 ## Installation
 
-npm:
+github:
+```bash
+git clone https://github.com/WhereIsMsXi/package-style.git
 
+cd package-style
+
+npm i
+
+npm run build
+```
+
+npmjs:
 ```bash
 # npm
 npm i @where_is_mr_li/style --save-dev

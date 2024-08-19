@@ -17,7 +17,10 @@
   "publishConfig": {
 		"access": "public"
 	},
-
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WhereIsMsXi/package-style.git"
+  },
   "author": "sxt",
   "license": "ISC",
   "engines": {
