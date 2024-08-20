@@ -6,7 +6,7 @@ const { concatScss } = require('./utils')
 async function resetOutupFolder() {
   const distPath = path.join(__dirname, distDir);
   try {
-    await fs.stat(distPath);
+    const stats = await fs.stat(distPath);
 
     if (stats.isDirectory()) {
       await fs.rm(distPath, { recursive: true });
