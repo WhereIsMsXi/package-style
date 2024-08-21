@@ -5,6 +5,7 @@
 ## Installation
 
 github:
+
 ```bash
 git clone https://github.com/WhereIsMsXi/package-style.git
 
@@ -16,6 +17,7 @@ npm run build
 ```
 
 npmjs:
+
 ```bash
 # npm
 npm i @where_is_mr_li/style --save-dev
