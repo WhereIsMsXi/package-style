@@ -1,6 +1,6 @@
 {
   "name": "@where_is_mr_li/style",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "common styles",
   "main": "index.js",
   "scripts": {
