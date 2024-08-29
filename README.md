@@ -27,4 +27,8 @@ yarn add @where_is_mr_li/style --dev
 
 #or pnpm
 pnpm add @where_is_mr_li/style --dev
+
+
+# use
+import '@where_is_mr_li/style/dist/index.scss';
 ```
